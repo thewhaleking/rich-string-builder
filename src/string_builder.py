@@ -9,7 +9,7 @@ class _ApplyStyle:
         return self.apply_style(*strings)
 
     def __repr__(self):
-        return self.style
+        return f"_ApplyStyle<{self.style}>"
 
     def __str__(self):
         return self.style
@@ -20,6 +20,20 @@ class _ApplyStyle:
             return f"[{self.style}]" + braces.format(*strings) + f"[/{self.style}]"
         else:
             return braces.format(*strings)
+
+
+class _StyleBuilder:
+    def __str__(self):
+        return str(
+            {
+                attr: str(getattr(self, attr))
+                for attr in dir(self)
+                if not attr.startswith("_")
+            }
+        )
+
+    def __repr__(self):
+        return f"_StyleBuilder<{self.__str__()}>"
 
 
 class RichStyles:
@@ -59,7 +73,7 @@ class RichStyles:
             if isinstance(value_, str):
                 return _ApplyStyle(value_)
             elif isinstance(value_, dict):
-                inner_object = type("", (), {})()
+                inner_object = _StyleBuilder()
                 for inner_key_, inner_value_ in value_.items():
                     setattr(inner_object, inner_key_, _create_object(inner_value_))
                 return inner_object
@@ -69,7 +83,7 @@ class RichStyles:
                     f"Dictionary must only consist of strings or inner dictionaries."
                 )
 
-        custom = type("", (), {})()
+        custom = _StyleBuilder()
         for key, value in custom_definition.items():
             setattr(custom, key, _create_object(value))
         return custom
