@@ -14,6 +14,12 @@ class _ApplyStyle:
     def __str__(self):
         return self.style
 
+    def __add__(self, other):
+        if not isinstance(other, _ApplyStyle):
+            raise TypeError
+        else:
+            return _ApplyStyle(f"{self.style} {other.style}")
+
     def apply_style(self, *strings):
         braces = "{}" * len(strings)
         if self.style is not None:
