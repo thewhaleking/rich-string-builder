@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, Optional
 
 
 class _ApplyStyle:
@@ -61,8 +61,12 @@ class RichStyles:
         white = _ApplyStyle("white")
         blue = _ApplyStyle("blue")
 
-    def __init__(self, custom_definitions: dict[str, Union[str, dict]]):
-        self.custom = self._objectify(custom_definitions)
+    def __init__(
+        self, custom_definitions: Optional[dict[str, Union[str, dict]]] = None
+    ):
+        self.custom = (
+            self._objectify(custom_definitions) if custom_definitions else None
+        )
         self.s = self.Styles
         self.c = self.Colors
         self.str = self.String
