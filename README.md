@@ -35,3 +35,47 @@ Currently this is just proof of concept. I will likely add to this over time.
 
 # Examples
 See `examples` directory for examples of using this.
+
+One of the fundamental aspects of this library is the ability to preload your own custom styles from a dictionary, like so:
+```python
+from rich.console import Console
+from src.string_builder import RichStyles
+
+console = Console()
+
+my_styles = {
+    "alert": "blink yellow",
+    "headers": {
+        "main": "bold",
+        "sub": "#4196D6"
+    }
+}
+rs = RichStyles(my_styles)
+console.print(rs.custom.alert("WARNING!"))  # '[blink yellow]WARNING![/blink yellow]'
+```
+
+Though you are able to combine these styles ad-hoc:
+
+```python
+bright_blue = rs.Styles.bright + rs.Colors.blue
+console.print(bright_blue("Coldkey"))  # '[bright blue]Coldkey[/bright blue]'
+```
+
+Say you have a complicated custom style, and you wish to only remove an element or two and reuse it:
+```python
+my_styles = {
+    "foo": "blink bright yellow"
+}
+rs = RichStyles(my_styles)
+console.print((rs.custom.foo - "blink")("Hello!"))  # '[bright yellow]Hello![/bright yellow]'
+# or define a new type:
+bar = rs.custom.foo - "blink"
+console.print(bar("Hello!"))  # '[bright yellow]Hello![/bright yellow]'
+```
+
+
+# Who is this for?
+I am personally colourblind. It's nice to have someone who is not colourblind define a colour palette, and I simply
+build from this. While colourblind people are not the only intended users, I think it will help them (us) substantially
+in terms of readability of the styles. 
+It's also very helpful for keeping easier track of your styles and reusability.
