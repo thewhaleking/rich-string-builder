@@ -29,8 +29,19 @@ console.print(
 
 The ideas are largely derived from Tailwind and other utility-style frameworks/libraries.
 
+# Installation
+Install from pypi with 
+```
+pip install rich-string-builder
+```
+or `uv`:
+```
+uv pip install rich-string-builder
+```
+
+
 ## Current State
-Currently this is just proof of concept. I will likely add to this over time.
+Currently, this is just proof of concept. I will likely add to this over time.
 
 
 ## Examples
