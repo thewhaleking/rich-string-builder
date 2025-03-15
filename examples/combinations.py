@@ -1,4 +1,4 @@
-from src.string_builder import RichStyles
+from rich_string_builder.string_builder import RichStyles
 
 
 def combinations():

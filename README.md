@@ -37,9 +37,10 @@ Currently this is just proof of concept. I will likely add to this over time.
 See `examples` directory for examples of using this.
 
 One of the fundamental aspects of this library is the ability to preload your own custom styles from a dictionary, like so:
+
 ```python
 from rich.console import Console
-from src.string_builder import RichStyles
+from rich_string_builder.string_builder import RichStyles
 
 console = Console()
 
