@@ -1,5 +1,5 @@
 # rich-string-builder
-Text preprocessor for building strings for the rich console
+Text preprocessor for building strings for the [rich library](https://github.com/Textualize/rich)
 
 
 ## Background
@@ -33,7 +33,7 @@ The ideas are largely derived from Tailwind and other utility-style frameworks/l
 Currently this is just proof of concept. I will likely add to this over time.
 
 
-# Examples
+## Examples
 See `examples` directory for examples of using this.
 
 One of the fundamental aspects of this library is the ability to preload your own custom styles from a dictionary, like so:
@@ -74,7 +74,7 @@ console.print(bar("Hello!"))  # '[bright yellow]Hello![/bright yellow]'
 ```
 
 
-# Who is this for?
+## Who is this for?
 I am personally colourblind. It's nice to have someone who is not colourblind define a colour palette, and I simply
 build from this. While colourblind people are not the only intended users, I think it will help them (us) substantially
 in terms of readability of the styles. 
