@@ -15,10 +15,20 @@ class _ApplyStyle:
         return self.style
 
     def __add__(self, other):
-        if not isinstance(other, _ApplyStyle):
+        if not isinstance(other, (str, _ApplyStyle)):
             raise TypeError
-        else:
+        elif isinstance(other, _ApplyStyle):
             return _ApplyStyle(f"{self.style} {other.style}")
+        else:
+            return _ApplyStyle(f"{self.style} {other}")
+
+    def __sub__(self, other):
+        if not isinstance(other, (str, _ApplyStyle)):
+            raise TypeError
+        elif isinstance(other, _ApplyStyle):
+            return _ApplyStyle(self.style.replace(other.style, "").strip())
+        else:
+            return _ApplyStyle(self.style.replace(other, "").strip())
 
     def apply_style(self, *strings):
         braces = "{}" * len(strings)
